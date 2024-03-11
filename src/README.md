@@ -63,9 +63,19 @@ The Muse uses a BT 4.2 [BTLE](https://www.google.com/search?client=firefox-b-1-d
 
 1. Follow the [instructions on this page](https://docs.petal.tech/connect-to-muse/connect-a-muse-device) to install petals and connect to the Muse. Also make sure to follow the OS specific instructions for connecting linked on the same page. Write steps below on how to connect with the Muse.
 
+Download Petals Metrics, Turn Muse on, Turn Bluetooth on, Choose OSC, click Stream, Run the osc_test_script.py file
+
 2. The Petals Metrics software uses OSC or LSL. What are they? What is the difference between the two? What is UDP? What is the relation between UDP and OSC?
 
+The Petals Metrics software utilizes two protocols, OSC (Open Sound Control) and LSL (Lab Streaming Layer), to handle real-time communication and data streaming. OSC is a content-agnostic protocol designed for modern networking technology, offering high flexibility and efficiency in sending messages between computers, synthesizers, and other multimedia devices, often over UDP (User Datagram Protocol), a foundational internet protocol that allows quick, connectionless communication. LSL, in contrast, is specifically tailored for the real-time acquisition, synchronization, and distribution of biosignals and other experimental data, making it ideal for research and biomedical applications. The key difference between OSC and LSL lies in their application focus: OSC is more general and multimedia-oriented, while LSL is specialized for research data. UDP's relationship with OSC comes from its use as a transport layer, where OSC's simplicity and speed benefit from UDP's lightweight, low-latency communication model, although at the cost of reliability and ordered delivery, which are not guaranteed by UDP.
+
 3. Read src/osc_muse_stream.py and get it to run. What is Python OSC? What is pythonosc.osc_server.ThreadingOSCUDPServer? What is pythonosc.dispatcher.Dispatcher()? 
+
+Python OSC is a library for Python that enables developers to send and receive Open Sound Control (OSC) messages. This makes it possible to facilitate communication between computers, sound synthesizers, and other multimedia devices within a network, leveraging the OSC protocol for real-time messaging. The Python OSC library is particularly useful for applications requiring high-speed, networked communication for multimedia and creative projects.
+
+Within the Python OSC library, pythonosc.osc_server.ThreadingOSCUDPServer is a specific class that allows the creation of an OSC server. This server listens for incoming OSC messages over UDP (User Datagram Protocol). The "Threading" part of its name indicates that this server can handle each incoming OSC message in a new thread, enabling concurrent processing of messages. This is beneficial in scenarios where message handling involves time-consuming operations, ensuring that the server remains responsive to new incoming messages.
+
+pythonosc.dispatcher.Dispatcher() is another component from the Python OSC library, which acts as a central hub for managing how incoming OSC messages are handled. When you create a Dispatcher instance, you can register handler functions to specific OSC address patterns. When an OSC message is received, the dispatcher checks the address of the message against its registry of handlers. If a match is found, the dispatcher invokes the corresponding handler function, passing the message for further processing. This mechanism allows developers to define custom behavior for different types of messages, making it a flexible way to implement the logic for responding to OSC commands within an application.
 
 
 
